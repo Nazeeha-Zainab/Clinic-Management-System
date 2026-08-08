@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-blue: #2563EB;
+    --primary-blue-hover: #1D4ED8;
+    --secondary-teal: #14B8A6;
+    --secondary-teal-hover: #0D9488;
+    --bg-white: #FFFFFF;
+    --bg-gray: #F8FAFC;
+    --text-dark: #0F172A;
+    --text-light: #64748B;
+    --border-color: #E2E8F0;
+    --radius: 16px;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    color: var(--text-dark);
+    font-weight: 700;
+    line-height: 1.2;
+}
+h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+p { color: var(--text-light); margin-bottom: 1rem; }
+.section-title { text-align: center; margin-bottom: 3rem; }
+.section-title h2 { color: var(--primary-blue); }
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+.btn-primary { background-color: var(--primary-blue); color: #fff; }
+.btn-primary:hover { background-color: var(--primary-blue-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-secondary { background-color: var(--bg-white); color: var(--primary-blue); border: 1px solid var(--border-color); }
+.btn-secondary:hover { background-color: var(--bg-gray); border-color: var(--primary-blue); }
+.btn-teal { background-color: var(--secondary-teal); color: #fff; }
+.btn-teal:hover { background-color: var(--secondary-teal-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    transition: var(--transition);
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.logo i { color: var(--secondary-teal); }
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    list-style: none;
+}
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: var(--transition);
+}
+.nav-links a:hover, .nav-links a.active { color: var(--primary-blue); }
+.nav-login { border-left: 1px solid var(--border-color); padding-left: 1.5rem; }
+
+/* Sections */
+section { padding: 5rem 0; }
+.bg-gray-section { background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(20,184,166,0.08) 100%); }
+
+/* Hero Section */
+.hero {
+    padding-top: 8rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(37,99,235,0.10) 0%, rgba(20,184,166,0.10) 100%);
+}
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+.hero-text h1 { font-size: 3.5rem; color: var(--text-dark); margin-bottom: 1.5rem; }
+.hero-text h1 span { color: var(--primary-blue); }
+.hero-text p { font-size: 1.125rem; margin-bottom: 2rem; max-width: 500px; }
+.hero-cta { display: flex; gap: 1rem; }
+.hero-image img { width: 100%; max-width: 600px; height: auto; border-radius: var(--radius); }
+
+/* Cards (Services, Features, Doctors) */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+
+.card {
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-blue);
+}
+
+/* Services */
+.service-icon {
+    width: 60px; height: 60px;
+    background: var(--bg-gray);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+}
+
+/* Doctors */
+.doctor-card { padding: 0; overflow: hidden; text-align: center; }
+.doctor-card img { width: 100%; height: 250px; object-fit: cover; }
+.doctor-info { padding: 1.5rem; }
+.doctor-info h3 { margin-bottom: 0.25rem; }
+.doctor-spec { color: var(--secondary-teal); font-weight: 500; margin-bottom: 1rem; display: block; }
+.doctor-schedule { font-size: 0.875rem; color: var(--text-light); margin-bottom: 1.5rem; }
+
+/* Testimonials */
+.testimonial-card { position: relative; }
+.testimonial-card i.fa-quote-left { position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem; color: var(--bg-gray); z-index: 1;}
+.testimonial-content { position: relative; z-index: 2; font-style: italic; margin-bottom: 1.5rem;}
+.testimonial-author { display: flex; align-items: center; gap: 1rem; }
+.testimonial-author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+.stars { color: #F59E0B; margin-bottom: 0.5rem; }
+
+/* Contact & Forms */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; }
+.contact-info-card { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start;}
+.contact-info-card i { font-size: 1.25rem; color: var(--primary-blue); background: var(--bg-gray); padding: 0.75rem; border-radius: 8px;}
+.form-group { margin-bottom: 1.25rem; }
+.form-control {
+    width: 100%; padding: 0.875rem 1rem; border-radius: 8px; border: 1px solid var(--border-color);
+    font-family: inherit; font-size: 1rem; transition: var(--transition);
+}
+.form-control:focus { outline: none; border-color: var(--primary-blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+textarea.form-control { resize: vertical; min-height: 120px; }
+
+/* Footer */
+footer { background: var(--text-dark); color: var(--bg-gray); padding: 4rem 0 2rem; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-title { color: #fff; font-size: 1.25rem; margin-bottom: 1.5rem; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 0.75rem; }
+.footer-links a { color: var(--text-light); text-decoration: none; transition: var(--transition); }
+.footer-links a:hover { color: var(--secondary-teal); }
+.social-icons { display: flex; gap: 1rem; margin-top: 1.5rem; }
+.social-icons a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; transition: var(--transition); }
+.social-icons a:hover { background: var(--primary-blue); }
+.footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: var(--text-light); }
+
+/* Responsive */
+@media (max-width: 992px) {
+    .hero-content { grid-template-columns: 1fr; text-align: center; }
+    .hero-text p { margin: 0 auto 2rem; }
+    .hero-cta { justify-content: center; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+    .nav-links { display: none; } /* In a real app we'd add a mobile menu toggle here */
+    h2 { font-size: 2rem; }
+    .footer-grid { grid-template-columns: 1fr; }
+}
