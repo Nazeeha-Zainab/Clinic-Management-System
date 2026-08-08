@@ -198,8 +198,13 @@
                 statusHtml = '<span class="badge" style="background:rgba(34,197,94,0.12);color:#16a34a;">Confirmed (Paid)</span>';
                 actionHtml = `<button class="btn btn-secondary btn-sm" onclick="startConsultation(${apt.id})"><i class="fa-solid fa-play"></i> Start</button>`;
             } else if (apt.status === 'scheduled') {
-                statusHtml = '<span class="badge" style="background:rgba(245,158,11,0.12);color:#f59e0b;">Scheduled (Unpaid)</span>';
-                actionHtml = `<button class="btn btn-outline btn-sm" disabled title="Pending Payment at Reception">Unpaid</button>`;
+                if (apt.is_paid) {
+                    statusHtml = '<span class="badge" style="background:rgba(34,197,94,0.12);color:#16a34a;">Scheduled (Paid)</span>';
+                    actionHtml = `<button class="btn btn-secondary btn-sm" onclick="startConsultation(${apt.id})"><i class="fa-solid fa-play"></i> Start</button>`;
+                } else {
+                    statusHtml = '<span class="badge" style="background:rgba(245,158,11,0.12);color:#f59e0b;">Scheduled (Unpaid)</span>';
+                    actionHtml = `<button class="btn btn-outline btn-sm" disabled title="Pending Payment at Reception">Unpaid</button>`;
+                }
             } else if (apt.status === 'completed') {
                 statusHtml = '<span class="badge completed">Completed</span>';
                 actionHtml = `<a href="{{ route('doctor.consultation') }}" class="btn btn-outline btn-sm"><i class="fa-solid fa-eye"></i> View</a>`;

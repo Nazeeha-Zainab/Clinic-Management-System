@@ -16,7 +16,7 @@ class ReceptionistController extends Controller
         $completedAppointments = \App\Models\Appointment::whereDate('appointment_date', $today)->where('status', 'completed')->count();
         $todaysRevenue = \App\Models\Payment::whereDate('created_at', $today)->where('status', 'paid')->sum('amount');
 
-        $queue = \App\Models\Appointment::with(['patient.user', 'doctor.user'])
+        $queue = \App\Models\Appointment::with(['patient.user', 'doctor.user', 'payment'])
             ->whereDate('appointment_date', $today)
             ->orderBy('appointment_date', 'asc')
             ->get();
@@ -129,7 +129,6 @@ class ReceptionistController extends Controller
             'status' => 'paid',
         ]);
 
-        $appointment->update(['status' => 'confirmed']);
 
         return redirect()->route('receptionist.billing')->with('success', 'Payment successful and invoice generated!');
     }

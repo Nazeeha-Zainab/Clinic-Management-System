@@ -3,7 +3,6 @@
 @section('content')
     <div class="page-title">
         <span>Manage Appointments</span>
-        <button class="btn"><i class="fa-solid fa-plus"></i> New Appointment</button>
     </div>
 
     <!-- Data Table Card -->

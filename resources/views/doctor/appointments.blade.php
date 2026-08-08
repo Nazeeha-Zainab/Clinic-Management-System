@@ -143,9 +143,13 @@
         document.getElementById('stat-cancelled').textContent  = apts.filter(a => a.status === 'cancelled').length;
     }
 
-    function statusBadge(status) {
+    function statusBadge(status, is_paid) {
+        if (status === 'scheduled') {
+            return is_paid
+                ? `<span class="badge" style="background:rgba(34,197,94,0.12);color:#16a34a;font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;">Scheduled (Paid)</span>`
+                : `<span class="badge" style="background:rgba(245,158,11,0.12);color:#f59e0b;font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;">Scheduled (Unpaid)</span>`;
+        }
         const map = {
-            scheduled: `<span class="badge" style="background:rgba(245,158,11,0.12);color:#f59e0b;font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;">Scheduled (Unpaid)</span>`,
             confirmed: `<span class="badge" style="background:rgba(34,197,94,0.12);color:#16a34a;font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;">Confirmed (Paid)</span>`,
             completed: `<span class="badge" style="background:rgba(59,130,246,0.12);color:#2563eb;font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;">Completed</span>`,
             cancelled: `<span class="badge" style="background:rgba(239,68,68,0.1);color:#dc2626;font-size:0.78rem;padding:0.3rem 0.7rem;border-radius:6px;">Cancelled</span>`,
@@ -155,6 +159,9 @@
 
     function actionButtons(apt) {
         let btns = `<a href="{{ route('doctor.patients') }}" class="btn-icon" title="View Record"><i class="fa-solid fa-folder-open"></i></a>`;
+        if (apt.status === 'scheduled' && apt.is_paid) {
+            btns += `<button class="btn btn-secondary btn-sm" style="margin-left:0.25rem;" onclick="window.location.href='{{ route('doctor.consultation') }}?appointment_id=${apt.id}'" title="Start Consultation"><i class="fa-solid fa-play"></i> Start</button>`;
+        }
         if (['scheduled', 'confirmed'].includes(apt.status)) {
             btns += `
                 <button class="btn btn-sm" style="margin-left:0.25rem;" onclick="updateStatus(${apt.id}, 'completed')" title="Mark Completed">
@@ -209,7 +216,7 @@
                         <div style="font-size: 0.75rem; color: var(--text-muted);">${apt.patient_id_label}${ageLabel}</div>
                     </td>
                     <td style="font-size: 0.85rem; color: var(--text-muted);">${apt.apt_number}</td>
-                    <td id="status-${apt.id}">${statusBadge(apt.status)}</td>
+                    <td id="status-${apt.id}">${statusBadge(apt.status, apt.is_paid)}</td>
                     <td id="actions-${apt.id}">${actionButtons(apt)}</td>
                 </tr>
             `);

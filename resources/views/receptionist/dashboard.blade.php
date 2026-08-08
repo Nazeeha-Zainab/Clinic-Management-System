@@ -108,7 +108,11 @@
                             </td>
                             <td>
                                 @if($appointment->status == 'scheduled')
-                                    <span class="badge active" style="background: #CCFBF1; color: #115E59;">In Consultation</span>
+                                    @if($appointment->payment)
+                                        <span class="badge active" style="background: #CCFBF1; color: #115E59;">Scheduled (Paid)</span>
+                                    @else
+                                        <span class="badge active" style="background: rgba(245,158,11,0.12); color: #f59e0b;">Scheduled (Unpaid)</span>
+                                    @endif
                                 @elseif($appointment->status == 'pending')
                                     <span class="badge pending">Waiting in Lobby</span>
                                 @elseif($appointment->status == 'completed')

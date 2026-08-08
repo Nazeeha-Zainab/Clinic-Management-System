@@ -245,10 +245,14 @@
 
         // Immediate Walk-in Slot
         slotsDiv.innerHTML += `
-            <div class="slot-item" data-time="immediate" style="padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: 8px; font-weight: 500; cursor: pointer; color: var(--text-muted);" onclick="selectSlot('immediate', this)">
+            <div class="slot-item active-slot" data-time="immediate" style="padding: 0.75rem 1rem; border: 1px solid var(--primary); border-radius: 8px; font-weight: 600; cursor: pointer; color: var(--primary); background-color: rgba(37, 99, 235, 0.05);" onclick="selectSlot('immediate', this)">
                 Immediate / Queue
             </div>
         `;
+        
+        const now = new Date();
+        selectedTime = now.toTimeString().substring(0, 5);
+        updateSummary();
     }
 
     window.selectSlot = function(timeVal, el, label) {

@@ -3,7 +3,7 @@
 @section('content')
     <div class="page-title">
         <span>Active Consultation</span>
-        <button class="btn btn-outline" style="color: var(--danger); border-color: var(--danger);">End Consultation</button>
+
     </div>
 
     <!-- Patient Header Strip -->
@@ -89,7 +89,7 @@
                         <i class="fa-solid fa-pills" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
                         <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Prescribe Medication</h4>
                         <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">Add medicines, lab tests, or follow-up instructions.</p>
-                        <a href="{{ route('doctor.prescriptions') }}" class="btn btn-sm" style="width: 100%; justify-content: center;"><i class="fa-solid fa-plus"></i> Add Prescription</a>
+                        <a href="{{ route('doctor.prescriptions', ['appointment_id' => $appointment->id]) }}" class="btn btn-sm" style="width: 100%; justify-content: center;"><i class="fa-solid fa-plus"></i> Add Prescription</a>
                     </div>
                 </div>
 

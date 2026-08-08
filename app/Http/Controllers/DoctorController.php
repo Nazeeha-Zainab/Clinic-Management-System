@@ -172,7 +172,7 @@ class DoctorController extends Controller
         // Accept optional ?date= param; default to today
         $date = $request->query('date', Carbon::today()->format('Y-m-d'));
 
-        $appointments = Appointment::with(['patient.user'])
+        $appointments = Appointment::with(['patient.user', 'payment'])
             ->where('doctor_id', $doctor->id)
             ->whereDate('appointment_date', $date)
             ->orderBy('appointment_date', 'asc')
@@ -197,6 +197,7 @@ class DoctorController extends Controller
                     'time_label'       => Carbon::parse($apt->appointment_date)->format('h:i A'),
                     'token_number'     => $apt->token_number,
                     'status'           => $apt->status,
+                    'is_paid'          => $apt->payment ? true : false,
                     'notes'            => $apt->notes,
                 ];
             });

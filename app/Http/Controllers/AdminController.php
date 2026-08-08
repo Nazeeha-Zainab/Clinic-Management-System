@@ -44,7 +44,7 @@ class AdminController extends Controller
         
         foreach ($workload->values() as $index => $item) {
             if ($index < 3) {
-                $docLabels[] = 'Dr. ' . ($item->doctor->user->name ?? 'Unknown');
+                $docLabels[] = $item->doctor->user->name ?? 'Unknown';
                 $docData[] = $item->count;
             } else {
                 $otherCount += $item->count;
