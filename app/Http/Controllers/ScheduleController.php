@@ -13,6 +13,15 @@ class ScheduleController extends Controller
         $request->validate([
             'doctor_id' => 'required|exists:doctors,id',
             'date' => 'required|date',
+            /*'date' => [
+                'required',
+                'date',
+                function ($attribute, $value, $fail) {
+                    if (date('w', strtotime($value)) == 0) {
+                        $fail('Scheduling on Sunday is not allowed.');
+                    }
+                },
+            ],*/
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
         ]);
