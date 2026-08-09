@@ -163,7 +163,7 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     saveBtn.textContent = 'Saving...';
 
     const payload = {
-        name:                  document.getElementById('pf-name').value,
+        full_name:             document.getElementById('pf-name').value,
         email:                 document.getElementById('pf-email').value,
         phone:                 document.getElementById('pf-phone').value,
         dob:                   document.getElementById('pf-dob').value,
@@ -190,7 +190,7 @@ document.getElementById('profile-form').addEventListener('submit', async functio
             alert.style.cssText = 'display:block; background:rgba(34,197,94,0.12); border:1px solid #16a34a; color:#15803d; border-radius:8px; padding:0.75rem 1rem; margin-bottom:1.5rem; font-weight:500;';
             alert.textContent = 'Profile updated successfully!';
             // Update avatar & name in sidebar + header
-            const newName = payload.name;
+            const newName = payload.full_name;
             document.getElementById('profile-name-display').textContent = newName;
             document.getElementById('profile-avatar').src =
                 `https://ui-avatars.com/api/?name=${encodeURIComponent(newName)}&background=14B8A6&color=fff&size=120`;
